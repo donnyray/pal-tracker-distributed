@@ -12,7 +12,7 @@ dependencies {
     compile project(":components:rest-support")
 
     compile "org.springframework.boot:spring-boot-starter-web"
-
+    compile "io.pivotal.spring.cloud:spring-cloud-services-starter-config-client"
     compile "com.zaxxer:HikariCP:2.3.7"
     compile "mysql:mysql-connector-java:$mysqlVersion"
     compile "ch.qos.logback:logback-classic:1.1.11"
@@ -30,5 +30,10 @@ bootRun.environment([
         "SECURITY_OAUTH2_CLIENT_CLIENT_ID": "tracker-client",
         "SECURITY_OAUTH2_CLIENT_CLIENT_SECRET": "supersecret",
         "SECURITY_USER_NAME": "actuator",
-        "SECURITY_USER_PASSWORD": "operations4red"
+        "SECURITY_USER_PASSWORD": "operations4red",
+        "REGISTRATION_SERVER_ENDPOINT": "http://registration-server",
+])
+
+test.environment([
+        "REGISTRATION_SERVER_ENDPOINT": "http://registration-server",
 ])
